@@ -1,0 +1,14 @@
+﻿# Dependências e saídas geradas
+node_modules/
+coverage/
+
+# Segredos e configuração local
+.env
+.env.*
+!.env.example
+.claude/settings.local.json
+
+# Sistema
+.DS_Store
+Thumbs.db
+desktop.ini

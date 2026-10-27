@@ -1,0 +1,21 @@
+{
+  "name": "assoalho-em-dia",
+  "version": "1.0.0",
+  "private": true,
+  "description": "App web da clínica Simone Matos para exercícios do assoalho pélvico. Ferramentas abaixo são só de desenvolvimento; o app publicado é estático e sem build.",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "lint:rules": "node scripts/verify-quality-rules.mjs",
+    "test": "node --test \"testes/**/*.test.js\"",
+    "check:config": "node scripts/validar-config.js",
+    "check": "npm run lint && npm run lint:rules && npm test && npm run check:config"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.13.0",
+    "globals": "^17.13.0"
+  }
+}

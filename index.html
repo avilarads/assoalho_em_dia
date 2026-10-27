@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Assoalho em Dia · Simone Matos Fisioterapia</title>
+  <meta name="description" content="Exercícios do assoalho pélvico guiados, com timer e calendário de constância. Clínica Simone Matos – Fisioterapia Pélvica e Obstétrica.">
+  <meta name="theme-color" content="#1f3d33">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Assoalho em Dia">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="img/icone.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Mulish:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/estilo.css">
+</head>
+<body>
+
+  <header class="topo">
+    <a class="marca" href="#/inicio" aria-label="Início">
+      <span class="monograma" aria-hidden="true">SM</span>
+      <span class="marca-textos">
+        <strong>Assoalho em Dia</strong>
+        <small id="marca-clinica"></small>
+      </span>
+    </a>
+    <a class="botao-whats-topo" data-whatsapp target="_blank" rel="noopener" aria-label="Falar com a clínica pelo WhatsApp">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#icone-whats"/></svg>
+    </a>
+  </header>
+
+  <main id="conteudo">
+
+    <!-- INÍCIO -->
+    <section class="tela" id="tela-inicio" hidden>
+      <div class="boas-vindas">
+        <p class="saudacao" id="saudacao">Olá</p>
+        <h1>Seu cuidado diário,<br><em>no seu ritmo.</em></h1>
+      </div>
+
+      <div id="cartao-hoje"></div>
+
+      <h2 class="titulo-secao">Protocolos</h2>
+      <p class="nota">Escolha o protocolo que a sua fisioterapeuta indicou.</p>
+      <div id="lista-protocolos" class="lista-protocolos"></div>
+
+      <a class="cartao-whats" data-whatsapp target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#icone-whats"/></svg>
+        <span><strong>Dúvidas sobre os exercícios?</strong><small>Fale com a clínica pelo WhatsApp</small></span>
+      </a>
+
+      <p class="aviso">Este aplicativo complementa o seu tratamento e não substitui a avaliação e o acompanhamento da sua fisioterapeuta.</p>
+    </section>
+
+    <!-- DETALHE DO PROTOCOLO -->
+    <section class="tela" id="tela-protocolo" hidden></section>
+
+    <!-- TREINO (TIMER) -->
+    <section class="tela tela-treino" id="tela-treino" hidden data-fase="preparar">
+      <div class="treino-topo">
+        <button class="botao-icone" id="treino-fechar" type="button" aria-label="Encerrar treino">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        </button>
+        <div class="treino-titulo">
+          <small id="treino-protocolo"></small>
+          <strong id="treino-etapa"></strong>
+        </div>
+        <span class="treino-tempo-total" id="treino-restante-total" aria-label="Tempo restante do treino"></span>
+      </div>
+
+      <div class="treino-barra" aria-hidden="true"><span id="treino-barra"></span></div>
+      <p class="treino-contagem" id="treino-contagem"></p>
+
+      <div class="visor" aria-live="polite">
+        <svg class="visor-anel" viewBox="0 0 220 220" aria-hidden="true">
+          <circle class="anel-fundo" cx="110" cy="110" r="102"/>
+          <circle class="anel-progresso" id="anel-progresso" cx="110" cy="110" r="102"/>
+        </svg>
+        <div class="bolha" id="bolha"></div>
+        <div class="visor-textos">
+          <span class="visor-fase" id="visor-fase">Prepare-se</span>
+          <span class="visor-segundos" id="visor-segundos">5</span>
+        </div>
+      </div>
+
+      <p class="treino-dica" id="treino-dica"></p>
+      <p class="treino-dica-etapa" id="treino-dica-etapa"></p>
+
+      <div class="treino-controles">
+        <button class="botao botao-claro" id="treino-pular" type="button" hidden>Pular descanso</button>
+        <button class="botao botao-dourado botao-grande" id="treino-pausar" type="button">Pausar</button>
+      </div>
+
+      <div class="treino-preferencias" role="group" aria-label="Sinais do treino">
+        <button type="button" class="chip" data-pref="som" aria-pressed="true">Som</button>
+        <button type="button" class="chip" data-pref="vibracao" aria-pressed="true">Vibração</button>
+        <button type="button" class="chip" data-pref="voz" aria-pressed="false">Voz</button>
+      </div>
+
+      <!-- Conclusão -->
+      <div class="conclusao" id="conclusao" hidden>
+        <div class="conclusao-caixa">
+          <span class="conclusao-selo" aria-hidden="true">✓</span>
+          <h2 id="conclusao-titulo">Treino concluído!</h2>
+          <p id="conclusao-texto"></p>
+          <div class="conclusao-numeros" id="conclusao-numeros"></div>
+          <a class="botao botao-dourado" href="#/constancia">Ver minha constância</a>
+          <a class="botao botao-linha-claro" href="#/inicio">Voltar ao início</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONSTÂNCIA -->
+    <section class="tela" id="tela-constancia" hidden>
+      <h1 class="titulo-pagina">Minha constância</h1>
+      <p class="nota">Cada dia de treino conta. O importante é a regularidade.</p>
+
+      <div class="estatisticas" id="estatisticas"></div>
+
+      <div class="calendario cartao">
+        <div class="calendario-cabecalho">
+          <button class="botao-icone" type="button" id="mes-anterior" aria-label="Mês anterior">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>
+          </button>
+          <strong id="mes-titulo"></strong>
+          <button class="botao-icone" type="button" id="mes-seguinte" aria-label="Próximo mês">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+        <div class="calendario-semana" aria-hidden="true">
+          <span>D</span><span>S</span><span>T</span><span>Q</span><span>Q</span><span>S</span><span>S</span>
+        </div>
+        <div class="calendario-dias" id="calendario-dias"></div>
+        <div class="legenda">
+          <span><i class="ponto ponto-completo"></i>Meta do dia</span>
+          <span><i class="ponto ponto-parcial"></i>Treinou</span>
+          <span><i class="ponto ponto-hoje"></i>Hoje</span>
+        </div>
+      </div>
+
+      <div class="cartao" id="dia-detalhe"></div>
+
+      <div class="acoes-historico">
+        <button class="botao botao-verde" type="button" id="registrar-manual">Registrar treino feito sem o app</button>
+        <a class="botao botao-linha" id="enviar-resumo" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#icone-whats"/></svg>
+          Enviar meu resumo à clínica
+        </a>
+      </div>
+
+      <div class="privacidade">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>
+        <p><strong>Seus registros ficam só neste aparelho.</strong> Nada é enviado para a internet e não pedimos nenhum dado pessoal. Se você limpar os dados do navegador ou trocar de celular, o histórico será perdido.</p>
+      </div>
+      <button class="link-perigo" type="button" id="apagar-historico">Apagar todo o meu histórico</button>
+    </section>
+  </main>
+
+  <nav class="nav-inferior" aria-label="Navegação principal">
+    <a href="#/inicio" data-nav="inicio">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/></svg>
+      Início
+    </a>
+    <a href="#/treinar" data-nav="treinar">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2.5M9 2h6"/></svg>
+      Treinar
+    </a>
+    <a href="#/constancia" data-nav="constancia">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
+      Constância
+    </a>
+    <a data-whatsapp target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#icone-whats"/></svg>
+      Clínica
+    </a>
+  </nav>
+
+  <!-- Janela de confirmação -->
+  <dialog id="dialogo" class="dialogo">
+    <form method="dialog">
+      <h3 id="dialogo-titulo"></h3>
+      <p id="dialogo-texto"></p>
+      <div class="dialogo-botoes">
+        <button class="botao botao-linha" value="nao" id="dialogo-nao">Cancelar</button>
+        <button class="botao botao-verde" value="sim" id="dialogo-sim">Confirmar</button>
+      </div>
+    </form>
+  </dialog>
+
+  <div class="aviso-flutuante" id="aviso-flutuante" role="status" aria-live="polite"></div>
+
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="icone-whats" viewBox="0 0 24 24">
+      <path fill="currentColor" stroke="none" d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm0 18.15a8.2 8.2 0 0 1-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.22 8.22 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.25-8.24s8.24 3.7 8.24 8.24-3.7 8.24-8.24 8.24zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.25-.64.81-.78.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.13-.15.17-.25.25-.42.08-.17.04-.31-.02-.43-.06-.13-.56-1.35-.76-1.84-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.22.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.14-1.18-.06-.11-.22-.17-.47-.29z"/>
+    </symbol>
+  </svg>
+
+  <script src="config.js"></script>
+  <script src="js/nucleo.js"></script>
+  <script src="js/armazenamento.js"></script>
+  <script src="js/sinais.js"></script>
+  <script src="js/telas.js"></script>
+  <script src="js/treino.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
